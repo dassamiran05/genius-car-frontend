@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route} from "react-router-dom";
+import Header from './pages/Shared/Header/Header';
+import Footer from './pages/Shared/Footer/Footer';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Login from './pages/Login/Login';
+import Services from './pages/Home/Services/Services';
+import Experts from "./pages/Home/Experts/Experts";
+import ServiceDetail from "./pages/ServiceDetail/ServiceDetail";
+import Register from "./pages/Login/Register";
+import Checkout from "./pages/Checkout/Checkout";
+import RequireAuth from "./pages/Login/RequireAuth/RequireAuth";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Header></Header>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/experts" element={<Experts />} />
+      <Route path="/service/:serviceId" element={<ServiceDetail></ServiceDetail>}></Route>
+      <Route path="/checkout" element={
+        <RequireAuth>
+          <Checkout></Checkout>
+        </RequireAuth>
+        }>
+        </Route>
+    </Routes>
+    <Footer></Footer>
     </div>
   );
 }

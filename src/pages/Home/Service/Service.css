@@ -1,0 +1,9 @@
+.service{
+    border: 1px solid lightgray;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.service img{
+    width: 100%;
+}
