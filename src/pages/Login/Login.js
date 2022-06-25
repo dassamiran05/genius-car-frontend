@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from './SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,14 +33,16 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passRef.current.value;
-        //console.log(email, password); 
 
-        signInWithEmailAndPassword(email, password);
-
+        await signInWithEmailAndPassword(email, password);
+        // const {data} = await axios.post('http://localhost:5000/login', {email});
+        // console.log(data);
+        // localStorage.setItem('accessToken', data.accessToken);
+        // navigate(from, { replace: true });
     }
 
     const navigateRegister = () =>{
