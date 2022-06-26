@@ -43,6 +43,21 @@ const Login = () => {
         // console.log(data);
         // localStorage.setItem('accessToken', data.accessToken);
         // navigate(from, { replace: true });
+        fetch('http://localhost:5000/login',{
+            method:'POST',
+            headers:{
+                'content-type' : 'application/json'
+            },
+            body:JSON.stringify({email, password})
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.success){
+                localStorage.setItem('accessToken', data.accessToken);
+                navigate('/orders');
+            }
+            console.log(data); 
+        })
     }
 
     const navigateRegister = () =>{
