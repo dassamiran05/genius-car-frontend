@@ -9,7 +9,7 @@ const Services = () => {
         // Gettting all service from service.json
         // fetch('service.json')
         //Getting all services fro server
-        fetch('http://localhost:5000/service')
+        fetch('https://ancient-citadel-53678.herokuapp.com/service')
         .then(res =>res.json())
         .then(data => setServices(data))
     }, [])

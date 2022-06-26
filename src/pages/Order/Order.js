@@ -10,7 +10,7 @@ const Order = () => {
 
     useEffect(() =>{
         const email = user.email;
-        const url = `http://localhost:5000/orders?email=${email}`;
+        const url = `https://ancient-citadel-53678.herokuapp.com/orders?email=${email}`;
         fetch(url, {
             method:"GET",
             headers:{

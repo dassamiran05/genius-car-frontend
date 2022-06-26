@@ -34,7 +34,7 @@ const Checkout = () => {
             address:event.target.address.value,
             phone:event.target.phone.value
         }
-        const url = 'http://localhost:5000/order/';
+        const url = 'https://ancient-citadel-53678.herokuapp.com/order/';
         fetch(url, {
             method:"POST",
             headers:{

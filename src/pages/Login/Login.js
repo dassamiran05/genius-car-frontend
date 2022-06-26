@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
@@ -19,6 +20,7 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+      const [token] = useToken(user);
 
       const [updatePassword, updating] = useUpdatePassword(auth);
 
@@ -39,25 +41,28 @@ const Login = () => {
         const password = passRef.current.value;
 
         await signInWithEmailAndPassword(email, password);
-        // const {data} = await axios.post('http://localhost:5000/login', {email});
+        // const {data} = await axios.post('https://ancient-citadel-53678.herokuapp.com/login', {email});
         // console.log(data);
         // localStorage.setItem('accessToken', data.accessToken);
         // navigate(from, { replace: true });
-        fetch('http://localhost:5000/login',{
-            method:'POST',
-            headers:{
-                'content-type' : 'application/json'
-            },
-            body:JSON.stringify({email, password})
-        })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.success){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/orders');
-            }
-            console.log(data); 
-        })
+
+
+        //Using fetch method
+        // fetch('https://ancient-citadel-53678.herokuapp.com/login',{
+        //     method:'POST',
+        //     headers:{
+        //         'content-type' : 'application/json'
+        //     },
+        //     body:JSON.stringify({email, password})
+        // })
+        // .then(res => res.json())
+        // .then(data =>{
+        //     if(data.success){
+        //         localStorage.setItem('accessToken', data.accessToken);
+        //         navigate(from, { replace: true });
+        //     }
+        //     console.log(data); 
+        // })
     }
 
     const navigateRegister = () =>{
@@ -74,7 +79,7 @@ const Login = () => {
         }
     }
 
-    if(user){
+    if(token){
         navigate(from, { replace: true });
     }
 
